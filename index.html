@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Employee Manager</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- LEFT SIDE: CONTROLS -->
+        <div class="operations-panel">
+
+            <!-- HEADER -->
+            <div style="color: white; margin-bottom: 0.5rem;">
+                <h1 style="font-size: 1.8rem; font-weight: 700;">Employee Manager</h1>
+                <p style="opacity: 0.9; font-size: 0.9rem;">Spring Boot Integration UI</p>
+            </div>
+
+            <!-- 1. CREATE / UPDATE CARD -->
+            <div class="card">
+                <h2><i class='bx bx-user-plus'></i> Manage Employee</h2>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Employee ID</label>
+                        <input type="number" id="inp-id" placeholder="101" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="inp-age" placeholder="25">
+                    </div>
+                    <div class="input-group full-width">
+                        <label>Full Name</label>
+                        <input type="text" id="inp-name" placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label>Salary</label>
+                        <input type="number" id="inp-salary" placeholder="50000">
+                    </div>
+                    <div class="input-group">
+                        <label>City</label>
+                        <input type="text" id="inp-city" placeholder="New York">
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-create" onclick="createEmployee()">
+                        <i class='bx bx-plus-circle'></i> Create New
+                    </button>
+                    <button class="btn-update" onclick="updateEmployee()">
+                        <i class='bx bx-edit'></i> Update by ID
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. SEARCH CARD -->
+            <div class="card">
+                <h2><i class='bx bx-search-alt'></i> Search Directory</h2>
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label>Search by City</label>
+                        <div style="display:flex; gap: 5px;">
+                            <input type="text" id="search-city" placeholder="Enter City Name...">
+                            <button class="btn-search" style="flex:0 0 80px" onclick="getByCity()">Find</button>
+                        </div>
+                    </div>
+                    <div class="input-group full-width">
+                        <label>Search by ID</label>
+                        <div style="display:flex; gap: 5px;">
+                            <input type="number" id="search-id" placeholder="Enter Emp ID...">
+                            <button class="btn-search" style="flex:0 0 80px" onclick="getById()">Find</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn-outline" onclick="getAllEmployees()">
+                        <i class='bx bx-list-ul'></i> Show All Employees
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. DELETE CARD -->
+            <div class="card">
+                <h2><i class='bx bx-trash'></i> Danger Zone</h2>
+                <div class="input-group">
+                    <label>Delete Specific Employee</label>
+                    <div style="display:flex; gap: 5px;">
+                        <input type="number" id="delete-id" placeholder="ID to delete...">
+                        <button class="btn-delete" style="flex:0 0 auto" onclick="deleteById()">Delete ID</button>
+                    </div>
+                </div>
+                <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn-delete" onclick="deleteAll()" style="background: #991b1b;">
+                        <i class='bx bxs-trash-alt'></i> DELETE ALL DATA
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE: RESULTS -->
+        <div class="results-panel">
+            <div class="results-header">
+                <h3 style="display: flex; align-items: center; gap: 8px;">
+                    <i class='bx bx-data' style="color: var(--primary);"></i> Database Results
+                </h3>
+                <span class="status-badge" id="status-msg">Ready</span>
+            </div>
+            <div class="results-body">
+                <table id="emp-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Age</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Data will be injected here by JS -->
+                        <tr>
+                            <td colspan="5" style="text-align:center; color: #9ca3af; padding: 2rem;">
+                                No data loaded yet. Click "Show All Employees".
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
